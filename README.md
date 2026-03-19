@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🤖 AI Tools & Tech Analytics Hub
 
 > A full-stack MERN platform for AI tool discovery, free developer utilities, tech analytics dashboards, and SEO-optimized blog content — built for organic traffic growth and Google AdSense monetization.
@@ -427,3 +428,6 @@ AdSense placements already configured:
 ## 📄 License
 
 MIT © 2025 AIHub — Built for developers, by developers.
+=======
+# ai-hub
+>>>>>>> 6124a00853621fed29a8349e117824fc1501dcc7
