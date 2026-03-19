@@ -35,8 +35,8 @@ export default function HomePage() {
           api.get('/tools/trending'),
           api.get('/blogs?limit=3'),
         ]);
-        setTrendingTools(toolsRes.data);
-        setBlogs(blogsRes.data.blogs);
+        setTrendingTools(toolsRes.data.data || []);
+        setBlogs(blogsRes.data.blogs || []);
       } catch {
         setTrendingTools(mockTools.filter(t => t.trending).slice(0, 6));
         setBlogs(mockBlogs);
@@ -152,7 +152,10 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {trendingTools.slice(0, 6).map(tool => (
+           {(Array.isArray(trendingTools) ?
+            trendingTools : [])
+            .slice(0, 6)
+            .map(tool => (
               <ToolCard key={tool._id || tool.slug} tool={tool} />
             ))}
           </div>
