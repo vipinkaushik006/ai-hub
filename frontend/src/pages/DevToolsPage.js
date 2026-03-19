@@ -205,7 +205,7 @@ function ResumeAnalyzer() {
     await new Promise(r => setTimeout(r, 2000));
     const wordCount = resume.split(/\s+/).length;
     const hasEmail = /\S+@\S+\.\S+/.test(resume);
-    const hasPhone = /[\d\s\-\+\(\)]{10,}/.test(resume);
+   const hasPhone = /[\d\s\-+()]{10,}/.test(resume);
     const keywords = ['Python', 'JavaScript', 'SQL', 'Machine Learning', 'React', 'Node.js', 'AWS', 'Docker', 'TypeScript', 'Data Science', 'API', 'REST', 'Git', 'Agile', 'Leadership'];
     const found = keywords.filter(k => resume.toLowerCase().includes(k.toLowerCase()));
     const missing = keywords.filter(k => !resume.toLowerCase().includes(k.toLowerCase())).slice(0, 5);
