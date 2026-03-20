@@ -47,8 +47,8 @@ export default function Footer() {
             <div className="flex gap-3">
               {[
                 { name: 'Twitter', url: 'https://twitter.com' },
-                { name: 'LinkedIn', url: 'https://linkedin.com' },
-                { name: 'GitHub', url: 'https://github.com' },
+                { name: 'LinkedIn', url: 'https://www.linkedin.com/in/vipin-kaushik006/' },
+                { name: 'GitHub', url: 'https://github.com/vipinkaushik006' },
                 { name: 'YouTube', url: 'https://youtube.com' },
               ].map(s => (
                 <a
