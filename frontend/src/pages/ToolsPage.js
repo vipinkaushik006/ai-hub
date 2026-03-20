@@ -191,7 +191,7 @@ export default function ToolsPage() {
           {/* Results */}
           <div className="flex items-center justify-between mb-6">
             <p className="text-slate-400 text-sm">
-              {loading ? "Loading..." : `${tools.length} tools found`}
+              {loading ? "Loading..." : `${(Array.isArray(tools) ? tools : []).length} tools found`}
               {search && (
                 <span>
                   {" "}
