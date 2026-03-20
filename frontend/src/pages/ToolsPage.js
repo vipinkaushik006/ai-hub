@@ -207,7 +207,7 @@ export default function ToolsPage() {
                 <div key={i} className="card p-5 h-52 skeleton" />
               ))}
             </div>
-          ) : tools.length === 0 ? (
+          ) : (Array.isArray(tools) ? tools : []).length === 0 ? (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="font-display font-bold text-white text-2xl mb-2">
