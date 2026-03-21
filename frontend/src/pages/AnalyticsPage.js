@@ -81,7 +81,7 @@ const AI_JOB_TRENDS = {
 };
 
 export default function AnalyticsPage() {
-  const [analytics, setAnalytics] = useState([]);
+  const [analytics, setAnalytics] = useState(mockAnalytics);
   const [activeTab, setActiveTab] = useState("demand");
 
   useEffect(() => {
