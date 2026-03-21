@@ -85,13 +85,17 @@ export default function AnalyticsPage() {
   const [activeTab, setActiveTab] = useState("demand");
 
   useEffect(() => {
-  api
-    .get("/analytics")
-    .then((res) => {
-      const data = res.data?.data || res.data?.analytics || res.data || [];
-      setAnalytics(Array.isArray(data) ? data : []);
+  api.get('/analytics')
+    .then(res => {
+      const data = res?.data;
+
+      if (Array.isArray(data) && data.length > 0) {
+        setAnalytics(data);
+      } else {
+        setAnalytics(mockAnalytics);
+      }
     })
-    .catch(() => setAnalytics(Array.isArray(mockAnalytics) ? mockAnalytics : []));
+    .catch(() => setAnalytics(mockAnalytics));
 }, []);
 
   const demandData = {
