@@ -80,40 +80,48 @@ export default function ToolsPage() {
   }, [search]);
 
   // ── Fetch tools ───────────────────────────────────────────────────────────
-  const fetchTools = useCallback(async () => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (search)   params.set("search",   search);
-      if (category) params.set("category", category);
-      if (pricing)  params.set("pricing",  pricing);
-      params.set("page",  String(page));
-      params.set("limit", String(TOOLS_PER_PAGE));
+const fetchTools = useCallback(async () => {
+  setLoading(true);
+  try {
+    const params = new URLSearchParams();
+    if (search) params.set("search", search);
+    if (category) params.set("category", category);
+    if (pricing) params.set("pricing", pricing);
+    params.set("page", page);
+    params.set("limit", 12);
 
-      const res = await api.get(`/tools?${params}`);
+    const res = await api.get(`/tools?${params}`);
 
-      // Defensive: the API might return various shapes
-      const rawTools = res?.data?.tools ?? res?.data ?? [];
-      const fetched  = safeArray(rawTools);
+    const data = res?.data?.tools;
 
-      if (fetched.length > 0) {
-        setAllTools(fetched);
-        setTotalPages(Math.max(1, res?.data?.pages ?? 1));
-      } else {
-        // API returned an empty list — fall back to (filtered) mock data
-        const filtered = applyFilters(mockTools, { search, category, pricing });
-        setAllTools(filtered);
-        setTotalPages(1);
-      }
-    } catch {
-      // Network / server error — use mock data with client-side filtering
-      const filtered = applyFilters(mockTools, { search, category, pricing });
-      setAllTools(filtered);
-      setTotalPages(1);
-    } finally {
-      setLoading(false);
+    if (Array.isArray(data) && data.length > 0) {
+      setTools(data);
+      setTotalPages(res?.data?.pages || 1);
+    } else {
+      throw new Error("No data from API");
     }
-  }, [search, category, pricing, page]);
+
+  } catch (err) {
+    console.log("Using mock data 🚀");
+
+    let filtered = mockTools;
+
+    if (search)
+      filtered = filtered.filter(
+        (t) =>
+          t.name.toLowerCase().includes(search.toLowerCase()) ||
+          t.description.toLowerCase().includes(search.toLowerCase())
+      );
+
+    if (category) filtered = filtered.filter((t) => t.category === category);
+    if (pricing) filtered = filtered.filter((t) => t.pricing === pricing);
+
+    setTools(filtered);
+    setTotalPages(1);
+  } finally {
+    setLoading(false);
+  }
+}, [search, category, pricing, page]);
 
   useEffect(() => {
     fetchTools();
