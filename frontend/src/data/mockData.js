@@ -47,17 +47,56 @@ export const mockAnalytics = [
 ];
 
 export const mockBlogs = [
-  { _id: '1', title: 'Best AI Tools for Students in 2025', slug: 'best-ai-tools-for-students-2025', excerpt: 'Discover the top AI tools every student should be using in 2025—from writing assistants to coding helpers and image generators.', category: 'AI Tools', tags: ['AI tools', 'students', 'productivity'], readTime: 8, views: 1247, createdAt: '2025-01-15', author: { name: 'Admin' }, coverImage: '' },
-  { _id: '2', title: 'Top Programming Languages to Learn in 2026', slug: 'top-programming-languages-2026', excerpt: 'An in-depth look at which programming languages are dominating job boards and salaries in 2026.', category: 'Programming', tags: ['programming', 'career', 'languages'], readTime: 10, views: 2341, createdAt: '2025-01-10', author: { name: 'Admin' }, coverImage: '' },
-  { _id: '3', title: 'AI vs Data Science: Which Career Path is Right for You?', slug: 'ai-vs-data-science-career', excerpt: 'A detailed comparison of AI engineering and data science career paths—salaries, skills, growth prospects, and more.', category: 'Career', tags: ['AI', 'data science', 'career'], readTime: 12, views: 3102, createdAt: '2025-01-05', author: { name: 'Admin' }, coverImage: '' },
-   {
+  {
     _id: '1',
+    title: 'Best AI Tools for Students in 2025',
+    slug: 'best-ai-tools-for-students-2025',
+    excerpt: 'Discover the top AI tools every student should be using in 2025.',
+    content: 'Students can use AI tools for notes, coding, writing, and more...',
+    category: 'AI Tools',
+    tags: ['AI', 'students'],
+    readTime: 8,
+    views: 1247,
+    createdAt: '2025-01-15',
+    author: { name: 'Admin' },
+    coverImage: ''
+  },
+  {
+    _id: '2',
+    title: 'Top Programming Languages to Learn in 2026',
+    slug: 'top-programming-languages-2026',
+    excerpt: 'Explore the most in-demand programming languages in 2026.',
+    content: 'Languages like Python, JavaScript, and Go are dominating...',
+    category: 'Programming',
+    tags: ['coding', 'career'],
+    readTime: 10,
+    views: 2341,
+    createdAt: '2025-01-10',
+    author: { name: 'Admin' },
+    coverImage: ''
+  },
+  {
+    _id: '3',
+    title: 'AI vs Data Science: Which Career is Better?',
+    slug: 'ai-vs-data-science-career',
+    excerpt: 'A complete comparison between AI and Data Science careers.',
+    content: 'AI and Data Science both offer high salaries...',
+    category: 'Career',
+    tags: ['AI', 'career'],
+    readTime: 12,
+    views: 3102,
+    createdAt: '2025-01-05',
+    author: { name: 'Admin' },
+    coverImage: ''
+  },
+  {
+    _id: '4',
     title: 'Top 10 AI Tools You Must Use in 2026',
     slug: 'top-10-ai-tools-2026',
-    excerpt: 'Discover the most powerful AI tools for productivity, coding, and creativity in 2026.',
-    content: 'AI tools are transforming how we work. In this blog, we explore the top tools like ChatGPT, Midjourney, and more...',
+    excerpt: 'Discover powerful AI tools for productivity and coding.',
+    content: 'AI tools like ChatGPT and Notion AI are transforming work...',
     category: 'AI Tools',
-    tags: ['AI', 'tools', 'productivity'],
+    tags: ['tools', 'AI'],
     readTime: 6,
     views: 1200,
     createdAt: '2026-01-10',
@@ -65,32 +104,17 @@ export const mockBlogs = [
     coverImage: ''
   },
   {
-    _id: '2',
-    title: 'Best AI Tools for Students',
-    slug: 'best-ai-tools-for-students',
-    excerpt: 'Boost your productivity and learning with these AI tools specially for students.',
-    content: 'Students can use AI tools for notes, coding, writing, and more...',
-    category: 'Education',
-    tags: ['students', 'AI'],
-    readTime: 5,
-    views: 900,
-    createdAt: '2026-01-12',
-    author: { name: 'Admin' },
-    coverImage: ''
-  },
-  {
-    _id: '3',
-    title: 'AI vs Data Science: Career Guide',
-    slug: 'ai-vs-data-science',
-    excerpt: 'Confused between AI and Data Science? Here is a complete comparison.',
-    content: 'AI and Data Science are both high-paying careers...',
-    category: 'Career',
-    tags: ['career', 'AI'],
-    readTime: 8,
-    views: 1500,
-    createdAt: '2026-01-15',
+    _id: '5',
+    title: 'Best AI Tools for Developers',
+    slug: 'best-ai-tools-for-developers',
+    excerpt: 'Boost your coding productivity using AI tools.',
+    content: 'Developers can use tools like Copilot and Codeium...',
+    category: 'Programming',
+    tags: ['developers', 'AI'],
+    readTime: 7,
+    views: 1800,
+    createdAt: '2026-01-18',
     author: { name: 'Admin' },
     coverImage: ''
   }
-
 ];
