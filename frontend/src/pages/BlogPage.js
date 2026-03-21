@@ -17,25 +17,24 @@ const CATEGORIES = [
 ];
 
 export default function BlogPage() {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(mockBlogs);
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "";
 
   useEffect(() => {
-    api
-      .get(`/blogs?limit=12${category ? `&category=${category}` : ""}`)
-      .then((res) => {
-        const data = res.data?.blogs || res.data?.data || res.data || [];
-        setBlogs(Array.isArray(data) ? data : []);
-      })
-      .catch(() => {
-        let b = Array.isArray(mockBlogs) ? mockBlogs : [];
-        if (category) b = b.filter((bl) => bl.category === category);
-        setBlogs(b);
-      })
-      .finally(() => setLoading(false));
-  }, [category]);
+  api.get('/blogs')
+    .then(res => {
+      const data = res?.data?.blogs;
+
+      if (Array.isArray(data) && data.length > 0) {
+        setBlogs(data);
+      } else {
+        setBlogs(mockBlogs);
+      }
+    })
+    .catch(() => setBlogs(mockBlogs));
+}, []);
 
   return (
     <>

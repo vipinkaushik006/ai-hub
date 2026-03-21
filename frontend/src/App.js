@@ -20,6 +20,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import BookmarksPage from './pages/BookmarksPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 // ✅ NEW PAGES
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -49,6 +50,7 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/bookmarks" element={<BookmarksPage />} />
+                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
                 {/* ✅ NEW ROUTES */}
                 <Route path="/privacy" element={<PrivacyPolicy />} />
