@@ -23,18 +23,26 @@ export default function BlogPage() {
   const category = searchParams.get("category") || "";
 
   useEffect(() => {
-  api.get('/blogs')
-    .then(res => {
-      const data = res?.data?.blogs;
-
-      if (Array.isArray(data) && data.length > 0) {
-        setBlogs(data);
-      } else {
+    api.get('/blogs')
+      .then(res => {
+        const data = res?.data?.blogs;
+        if (Array.isArray(data) && data.length > 0) {
+          setBlogs(data);
+        } else {
+          setBlogs(mockBlogs);
+        }
+      })
+      .catch(() => {
         setBlogs(mockBlogs);
-      }
-    })
-    .catch(() => setBlogs(mockBlogs));
-}, []);
+      })
+      .finally(() => {
+        setLoading(false); // ✅ Fix #1
+      });
+  }, []);
+
+  const filteredBlogs = category
+    ? blogs.filter(b => b.category === category)
+    : blogs; // ✅ Fix #2
 
   return (
     <>
@@ -68,7 +76,11 @@ export default function BlogPage() {
                   if (c !== "All") p.set("category", c);
                   setSearchParams(p);
                 }}
-                className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${(c === "All" && !category) || category === c ? "bg-primary-500 border-primary-500 text-white" : "border-white/10 text-slate-400 hover:border-white/20 hover:text-white"}`}
+                className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                  (c === "All" && !category) || category === c
+                    ? "bg-primary-500 border-primary-500 text-white"
+                    : "border-white/10 text-slate-400 hover:border-white/20 hover:text-white"
+                }`}
               >
                 {c}
               </button>
@@ -83,7 +95,7 @@ export default function BlogPage() {
                 <div key={i} className="card h-80 skeleton" />
               ))}
             </div>
-          ) : blogs.length === 0 ? (
+          ) : filteredBlogs.length === 0 ? (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">📝</div>
               <h3 className="font-display font-bold text-white text-2xl">
@@ -92,7 +104,7 @@ export default function BlogPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {blogs.map((blog, i) => (
+              {filteredBlogs.map((blog, i) => (
                 <BlogCard key={blog._id || blog.slug} blog={blog} index={i} />
               ))}
             </div>
