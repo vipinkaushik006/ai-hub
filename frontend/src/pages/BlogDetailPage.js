@@ -6,6 +6,7 @@ import api from '../utils/api';
 import { mockBlogs } from '../data/mockData';
 
 function renderMarkdown(text) {
+  if (!text) return '';
   return text
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -24,8 +25,18 @@ export default function BlogDetailPage() {
 
   useEffect(() => {
     api.get(`/blogs/${slug}`)
-      .then(res => setBlog(res.data))
-      .catch(() => setBlog(mockBlogs.find(b => b.slug === slug) || null))
+      .then(res => {
+        // ✅ API response ke saare possible structures handle karo
+        const data = res?.data?.blog || res?.data?.data || res?.data;
+        if (data && data.title) {
+          setBlog(data);
+        } else {
+          setBlog(mockBlogs.find(b => b.slug === slug) || null);
+        }
+      })
+      .catch(() => {
+        setBlog(mockBlogs.find(b => b.slug === slug) || null);
+      })
       .finally(() => setLoading(false));
   }, [slug]);
 
