@@ -1,68 +1,211 @@
+// ─────────────────────────────────────────────
+// src/mocks/tools.js
+// Matches exact shape returned by GET /api/tools
+// ─────────────────────────────────────────────
+
+// ✅ Real MongoDB _ids — 24-char hex strings, not '1', '2', '3'
+// These match the shape that ObjectId.toString() returns
 export const mockTools = [
-  { _id: '1', name: 'ChatGPT', slug: 'chatgpt', category: 'AI Writing', description: 'Advanced conversational AI by OpenAI for writing, coding, analysis, and more.', websiteLink: 'https://chat.openai.com', pricing: 'Freemium', rating: 4.8, trending: true, featured: true, tags: ['chatbot', 'writing', 'GPT-4'], logoUrl: '' },
-  { _id: '2', name: 'Claude', slug: 'claude', category: 'AI Writing', description: "Anthropic's intelligent AI for complex reasoning, analysis, and creative writing.", websiteLink: 'https://claude.ai', pricing: 'Freemium', rating: 4.9, trending: true, featured: true, tags: ['chatbot', 'reasoning'], logoUrl: '' },
-  { _id: '3', name: 'GitHub Copilot', slug: 'github-copilot', category: 'AI Coding', description: 'AI pair programmer that suggests code completions and entire functions in real time.', websiteLink: 'https://github.com/features/copilot', pricing: 'Paid', rating: 4.7, trending: true, tags: ['coding', 'IDE'], logoUrl: '' },
-  { _id: '4', name: 'Cursor', slug: 'cursor', category: 'AI Coding', description: 'AI-first code editor built for pair programming with cutting-edge language models.', websiteLink: 'https://cursor.sh', pricing: 'Freemium', rating: 4.8, trending: true, tags: ['IDE', 'coding'], logoUrl: '' },
-  { _id: '5', name: 'Midjourney', slug: 'midjourney', category: 'AI Image Generation', description: 'Create stunning, photorealistic images from text prompts using Discord-based AI.', websiteLink: 'https://midjourney.com', pricing: 'Paid', rating: 4.7, trending: true, tags: ['image', 'art', 'design'], logoUrl: '' },
-  { _id: '6', name: 'DALL-E 3', slug: 'dall-e-3', category: 'AI Image Generation', description: "OpenAI's most advanced image generator integrated in ChatGPT for stunning visuals.", websiteLink: 'https://openai.com/dall-e-3', pricing: 'Freemium', rating: 4.5, trending: false, tags: ['image', 'OpenAI'], logoUrl: '' },
-  { _id: '7', name: 'Runway ML', slug: 'runway-ml', category: 'AI Video', description: 'Professional AI video generation and editing platform for creators and filmmakers.', websiteLink: 'https://runwayml.com', pricing: 'Freemium', rating: 4.6, trending: true, tags: ['video', 'editing'], logoUrl: '' },
-  { _id: '8', name: 'Sora', slug: 'sora', category: 'AI Video', description: "OpenAI's text-to-video model capable of generating cinematic video clips from prompts.", websiteLink: 'https://openai.com/sora', pricing: 'Paid', rating: 4.7, trending: true, tags: ['video', 'text-to-video'], logoUrl: '' },
-  { _id: '9', name: 'Grammarly', slug: 'grammarly', category: 'AI Writing', description: 'AI-powered grammar checker and writing assistant for clear, engaging content.', websiteLink: 'https://grammarly.com', pricing: 'Freemium', rating: 4.5, trending: false, tags: ['writing', 'grammar'], logoUrl: '' },
-  { _id: '10', name: 'Tabnine', slug: 'tabnine', category: 'AI Coding', description: 'AI code completion tool supporting 30+ programming languages across major IDEs.', websiteLink: 'https://tabnine.com', pricing: 'Freemium', rating: 4.3, trending: false, tags: ['coding', 'autocomplete'], logoUrl: '' },
-  { _id: '11', name: 'Stable Diffusion', slug: 'stable-diffusion', category: 'AI Image Generation', description: 'Open-source text-to-image model you can run locally or use via hosted platforms.', websiteLink: 'https://stability.ai', pricing: 'Open Source', rating: 4.4, trending: false, tags: ['image', 'open-source'], logoUrl: '' },
-  { _id: '12', name: 'Jasper', slug: 'jasper', category: 'AI Writing', description: 'Marketing-focused AI writing tool for blog posts, ads, and social media content.', websiteLink: 'https://jasper.ai', pricing: 'Paid', rating: 4.3, trending: false, tags: ['marketing', 'copywriting'], logoUrl: '' },
-  { _id: '13', name: 'Perplexity AI', slug: 'perplexity-ai', category: 'AI Writing', description: 'AI-powered search engine that answers questions with cited, real-time web sources.', websiteLink: 'https://perplexity.ai', pricing: 'Freemium', rating: 4.7, trending: true, tags: ['search', 'research', 'chatbot'], logoUrl: '' },
-  { _id: '14', name: 'Notion AI', slug: 'notion-ai', category: 'Productivity', description: 'AI assistant built into Notion for writing, summarizing, and organizing notes and docs.', websiteLink: 'https://notion.so/product/ai', pricing: 'Paid', rating: 4.5, trending: true, tags: ['notes', 'productivity', 'writing'], logoUrl: '' },
-  { _id: '15', name: 'Copy.ai', slug: 'copy-ai', category: 'AI Writing', description: 'AI copywriting tool that generates marketing copy, emails, and social media content instantly.', websiteLink: 'https://copy.ai', pricing: 'Freemium', rating: 4.2, trending: false, tags: ['copywriting', 'marketing', 'content'], logoUrl: '' },
-  { _id: '16', name: 'ElevenLabs', slug: 'elevenlabs', category: 'AI Audio', description: 'Hyper-realistic AI voice synthesis and cloning platform for narration and podcasts.', websiteLink: 'https://elevenlabs.io', pricing: 'Freemium', rating: 4.8, trending: true, tags: ['voice', 'text-to-speech', 'audio'], logoUrl: '' },
-  { _id: '17', name: 'Descript', slug: 'descript', category: 'AI Audio', description: 'AI-powered audio and video editor that lets you edit media by editing text transcripts.', websiteLink: 'https://descript.com', pricing: 'Freemium', rating: 4.6, trending: true, tags: ['audio', 'video', 'transcription'], logoUrl: '' },
-  { _id: '18', name: 'Replit AI', slug: 'replit-ai', category: 'AI Coding', description: 'In-browser AI coding assistant and IDE for building and deploying apps instantly.', websiteLink: 'https://replit.com', pricing: 'Freemium', rating: 4.4, trending: true, tags: ['coding', 'IDE', 'deployment'], logoUrl: '' },
-  { _id: '19', name: 'Adobe Firefly', slug: 'adobe-firefly', category: 'AI Image Generation', description: "Adobe's generative AI for creating images, text effects, and design assets commercially safe.", websiteLink: 'https://firefly.adobe.com', pricing: 'Freemium', rating: 4.5, trending: true, tags: ['image', 'design', 'adobe'], logoUrl: '' },
-  { _id: '20', name: 'Kling AI', slug: 'kling-ai', category: 'AI Video', description: 'High-fidelity text-to-video and image-to-video generation model by Kuaishou.', websiteLink: 'https://klingai.com', pricing: 'Freemium', rating: 4.6, trending: true, tags: ['video', 'text-to-video', 'generation'], logoUrl: '' },
-  { _id: '21', name: 'Synthesia', slug: 'synthesia', category: 'AI Video', description: 'Create professional AI avatar videos from text scripts in 130+ languages.', websiteLink: 'https://synthesia.io', pricing: 'Paid', rating: 4.5, trending: false, tags: ['video', 'avatar', 'presentation'], logoUrl: '' },
-  { _id: '22', name: 'Whisper', slug: 'openai-whisper', category: 'AI Audio', description: "OpenAI's open-source speech recognition model with near-human transcription accuracy.", websiteLink: 'https://openai.com/research/whisper', pricing: 'Open Source', rating: 4.7, trending: false, tags: ['transcription', 'speech', 'open-source'], logoUrl: '' },
-  { _id: '23', name: 'Codeium', slug: 'codeium', category: 'AI Coding', description: 'Free AI code completion and chat tool supporting 70+ languages across all major IDEs.', websiteLink: 'https://codeium.com', pricing: 'Free', rating: 4.5, trending: true, tags: ['coding', 'autocomplete', 'free'], logoUrl: '' },
-  { _id: '24', name: 'Ideogram', slug: 'ideogram', category: 'AI Image Generation', description: 'AI image generator that excels at creating visuals with accurate, stylized text rendering.', websiteLink: 'https://ideogram.ai', pricing: 'Freemium', rating: 4.4, trending: true, tags: ['image', 'typography', 'design'], logoUrl: '' },
-  { _id: '25', name: 'Gamma', slug: 'gamma-app', category: 'Productivity', description: 'AI-powered presentation and document builder that creates beautiful decks in seconds.', websiteLink: 'https://gamma.app', pricing: 'Freemium', rating: 4.6, trending: true, tags: ['presentations', 'slides', 'productivity'], logoUrl: '' },
-  { _id: '26', name: 'Bolt.new', slug: 'bolt-new', category: 'AI Coding', description: 'AI-powered full-stack web app builder that scaffolds, runs, and deploys code in the browser.', websiteLink: 'https://bolt.new', pricing: 'Freemium', rating: 4.7, trending: true, tags: ['coding', 'web-app', 'deployment'], logoUrl: '' },
-  { _id: '27', name: 'Murf AI', slug: 'murf-ai', category: 'AI Audio', description: 'Studio-quality AI voiceover generator with 120+ natural voices for videos and podcasts.', websiteLink: 'https://murf.ai', pricing: 'Freemium', rating: 4.4, trending: false, tags: ['voiceover', 'audio', 'text-to-speech'], logoUrl: '' },
-  { _id: '28', name: 'Lovable', slug: 'lovable', category: 'AI Coding', description: 'AI-powered app builder that turns natural language prompts into full-stack React applications.', websiteLink: 'https://lovable.dev', pricing: 'Freemium', rating: 4.6, trending: true, tags: ['coding', 'React', 'no-code'], logoUrl: '' },
-  { _id: '29', name: 'Writesonic', slug: 'writesonic', category: 'AI Writing', description: 'AI writing platform for SEO-optimized blog posts, product descriptions, and ad copy.', websiteLink: 'https://writesonic.com', pricing: 'Freemium', rating: 4.2, trending: false, tags: ['writing', 'SEO', 'content'], logoUrl: '' },
-  { _id: '30', name: 'Reclaim AI', slug: 'reclaim-ai', category: 'Productivity', description: 'Smart calendar automation tool that schedules tasks and meetings to protect focus time.', websiteLink: 'https://reclaim.ai', pricing: 'Freemium', rating: 4.5, trending: false, tags: ['calendar', 'scheduling', 'productivity'], logoUrl: '' },
-  { _id: '31', name: 'Canva AI', slug: 'canva-ai', category: 'AI Image Generation', description: "Canva's suite of generative AI tools for designing graphics, presentations, and social posts.", websiteLink: 'https://canva.com/ai-image-generator', pricing: 'Freemium', rating: 4.6, trending: true, tags: ['design', 'image', 'templates'], logoUrl: '' },
-  { _id: '32', name: 'Motion', slug: 'motion-app', category: 'Productivity', description: 'AI project manager that automatically builds and reschedules your daily task calendar.', websiteLink: 'https://usemotion.com', pricing: 'Paid', rating: 4.4, trending: true, tags: ['productivity', 'planning', 'scheduling'], logoUrl: '' },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12301',
+    name: 'ChatGPT',
+    slug: 'chatgpt',
+    category: 'AI Writing',
+    description: 'Advanced conversational AI by OpenAI for writing, coding, analysis, and more.',
+    websiteLink: 'https://chat.openai.com',
+    pricing: 'Freemium',
+    rating: 4.8,
+    totalRatings: 1200,   // ✅ Always include — used by RatingDisplay components
+    ratingSum: 5760,
+    trending: true,
+    featured: true,       // ✅ Always include — used by FeaturedBadge components
+    tags: ['chatbot', 'writing', 'gpt-4'], // ✅ lowercase — matches schema lowercase:true
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(), // ✅ ISO string matches JSON.stringify(Date)
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12302',
+    name: 'Claude',
+    slug: 'claude',
+    category: 'AI Writing',
+    description: "Anthropic's intelligent AI for complex reasoning, analysis, and creative writing.",
+    websiteLink: 'https://claude.ai',
+    pricing: 'Freemium',
+    rating: 4.9,
+    totalRatings: 800,
+    ratingSum: 3920,
+    trending: true,
+    featured: true,
+    tags: ['chatbot', 'reasoning', 'writing'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12303',
+    name: 'GitHub Copilot',
+    slug: 'github-copilot',
+    category: 'AI Coding',
+    description: 'AI pair programmer that suggests code completions and entire functions in real time.',
+    websiteLink: 'https://github.com/features/copilot',
+    pricing: 'Paid',
+    rating: 4.7,
+    totalRatings: 900,
+    ratingSum: 4230,
+    trending: true,
+    featured: false,
+    tags: ['coding', 'autocomplete', 'ide'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12304',
+    name: 'Cursor',
+    slug: 'cursor',
+    category: 'AI Coding',
+    description: 'AI-first code editor built for pair programming with cutting-edge language models.',
+    websiteLink: 'https://cursor.sh',
+    pricing: 'Freemium',
+    rating: 4.8,
+    totalRatings: 600,
+    ratingSum: 2880,
+    trending: true,
+    featured: false,
+    tags: ['ide', 'coding', 'gpt-4'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12305',
+    name: 'Midjourney',
+    slug: 'midjourney',
+    category: 'AI Image Generation',
+    description: 'Create stunning, photorealistic images from text prompts using Discord-based AI.',
+    websiteLink: 'https://midjourney.com',
+    pricing: 'Paid',
+    rating: 4.7,
+    totalRatings: 1100,
+    ratingSum: 5170,
+    trending: true,
+    featured: false,
+    tags: ['image', 'art', 'design'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12306',
+    name: 'ElevenLabs',
+    slug: 'elevenlabs',
+    category: 'AI Audio',
+    description: 'Hyper-realistic AI voice synthesis and cloning platform for narration and podcasts.',
+    websiteLink: 'https://elevenlabs.io',
+    pricing: 'Freemium',
+    rating: 4.8,
+    totalRatings: 750,
+    ratingSum: 3600,
+    trending: true,
+    featured: false,
+    tags: ['voice', 'text-to-speech', 'audio'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12307',
+    name: 'Notion AI',
+    slug: 'notion-ai',
+    category: 'Productivity',
+    description: 'AI assistant built into Notion for writing, summarizing, and organizing notes and docs.',
+    websiteLink: 'https://notion.so/product/ai',
+    pricing: 'Paid',
+    rating: 4.5,
+    totalRatings: 620,
+    ratingSum: 2790,
+    trending: true,
+    featured: false,
+    tags: ['notes', 'productivity', 'writing'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  },
+  {
+    _id: '6679a1f2e4b0c3d5a8f12308',
+    name: 'Bolt.new',
+    slug: 'bolt-new',
+    category: 'AI Coding',
+    description: 'AI-powered full-stack web app builder that scaffolds, runs, and deploys code in the browser.',
+    websiteLink: 'https://bolt.new',
+    pricing: 'Freemium',
+    rating: 4.7,
+    totalRatings: 430,
+    ratingSum: 2021,
+    trending: true,
+    featured: false,
+    tags: ['coding', 'web-app', 'deployment'],
+    logoUrl: '',
+    views: 0,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString()
+  }
 ];
 
+// ─────────────────────────────────────────────
+// src/mocks/analytics.js
+// Matches exact shape returned by GET /api/analytics
+// ─────────────────────────────────────────────
 export const mockAnalytics = [
-  { skill: 'Python', category: 'Technology', demand: 92, salary: 125000, growth: 18, jobPostings: 85000 },
-  { skill: 'Machine Learning', category: 'AI/ML', demand: 88, salary: 145000, growth: 35, jobPostings: 62000 },
-  { skill: 'JavaScript', category: 'Technology', demand: 90, salary: 115000, growth: 12, jobPostings: 95000 },
-  { skill: 'React.js', category: 'Technology', demand: 85, salary: 120000, growth: 20, jobPostings: 72000 },
-  { skill: 'Data Science', category: 'Data', demand: 82, salary: 135000, growth: 28, jobPostings: 58000 },
-  { skill: 'Cloud (AWS)', category: 'Cloud', demand: 87, salary: 130000, growth: 30, jobPostings: 70000 },
-  { skill: 'LLM Engineering', category: 'AI/ML', demand: 78, salary: 155000, growth: 120, jobPostings: 35000 },
-  { skill: 'Kubernetes', category: 'DevOps', demand: 75, salary: 138000, growth: 25, jobPostings: 42000 },
-  { skill: 'TypeScript', category: 'Technology', demand: 80, salary: 122000, growth: 40, jobPostings: 60000 },
-  { skill: 'SQL', category: 'Data', demand: 88, salary: 105000, growth: 8, jobPostings: 80000 },
+  { _id: '6679a1f2e4b0c3d5a8f12401', skill: 'Python',           category: 'Technology', demand: 92, salary: 125000, growth: 18,  jobPostings: 85000 },
+  { _id: '6679a1f2e4b0c3d5a8f12402', skill: 'Machine Learning', category: 'AI/ML',      demand: 88, salary: 145000, growth: 35,  jobPostings: 62000 },
+  { _id: '6679a1f2e4b0c3d5a8f12403', skill: 'JavaScript',       category: 'Technology', demand: 90, salary: 115000, growth: 12,  jobPostings: 95000 },
+  { _id: '6679a1f2e4b0c3d5a8f12404', skill: 'React.js',         category: 'Technology', demand: 85, salary: 120000, growth: 20,  jobPostings: 72000 },
+  { _id: '6679a1f2e4b0c3d5a8f12405', skill: 'Data Science',     category: 'Data',       demand: 82, salary: 135000, growth: 28,  jobPostings: 58000 },
+  { _id: '6679a1f2e4b0c3d5a8f12406', skill: 'Cloud (AWS)',      category: 'Cloud',      demand: 87, salary: 130000, growth: 30,  jobPostings: 70000 },
+  { _id: '6679a1f2e4b0c3d5a8f12407', skill: 'LLM Engineering',  category: 'AI/ML',      demand: 78, salary: 155000, growth: 120, jobPostings: 35000 },
+  { _id: '6679a1f2e4b0c3d5a8f12408', skill: 'Kubernetes',       category: 'DevOps',     demand: 75, salary: 138000, growth: 25,  jobPostings: 42000 },
+  { _id: '6679a1f2e4b0c3d5a8f12409', skill: 'TypeScript',       category: 'Technology', demand: 80, salary: 122000, growth: 40,  jobPostings: 60000 },
+  { _id: '6679a1f2e4b0c3d5a8f12410', skill: 'SQL',              category: 'Data',       demand: 88, salary: 105000, growth: 8,   jobPostings: 80000 },
 ];
 
+// ─────────────────────────────────────────────
+// src/mocks/blogs.js
+// Matches exact shape returned by GET /api/blogs
+// including populated author shape from .populate()
+// ─────────────────────────────────────────────
 export const mockBlogs = [
   {
-    _id: '1',
+    _id: '6679a1f2e4b0c3d5a8f12501',
     title: 'Best AI Tools for Students in 2025',
     slug: 'best-ai-tools-for-students-2025',
     excerpt: 'Discover the top AI tools every student should be using in 2025.',
     content: 'Students can use AI tools for notes, coding, writing, and more...',
     category: 'AI Tools',
-    tags: ['AI', 'students'],
+    tags: ['ai tools', 'students', 'productivity'], // ✅ lowercase
     readTime: 8,
-    views: 1247,
-    createdAt: '2025-01-15',
-    author: { name: 'Admin' },
+    views: 0,             // ✅ starts at 0 — not fake inflated number
+    published: true,
+    createdAt: new Date('2025-01-15').toISOString(),
+    updatedAt: new Date('2025-01-15').toISOString(),
+    // ✅ Full populated author shape — matches .populate('author', 'name avatar')
+    author: {
+      _id: '6679a1f2e4b0c3d5a8f12001',
+      name: 'Admin',
+      avatar: ''
+    },
     coverImage: ''
   },
   {
-    _id: '2',
+    _id: '6679a1f2e4b0c3d5a8f12502',
     title: 'Top Programming Languages to Learn in 2026',
     slug: 'top-programming-languages-2026',
     excerpt: 'Explore the most in-demand programming languages in 2026.',
@@ -70,51 +213,43 @@ export const mockBlogs = [
     category: 'Programming',
     tags: ['coding', 'career'],
     readTime: 10,
-    views: 2341,
-    createdAt: '2025-01-10',
-    author: { name: 'Admin' },
+    views: 0,
+    published: true,
+    createdAt: new Date('2025-01-10').toISOString(),
+    updatedAt: new Date('2025-01-10').toISOString(),
+    author: {
+      _id: '6679a1f2e4b0c3d5a8f12001',
+      name: 'Admin',
+      avatar: ''
+    },
     coverImage: ''
   },
   {
-    _id: '3',
+    _id: '6679a1f2e4b0c3d5a8f12503',
     title: 'AI vs Data Science: Which Career is Better?',
     slug: 'ai-vs-data-science-career',
     excerpt: 'A complete comparison between AI and Data Science careers.',
     content: 'AI and Data Science both offer high salaries...',
     category: 'Career',
-    tags: ['AI', 'career'],
+    tags: ['ai', 'career'],
     readTime: 12,
-    views: 3102,
-    createdAt: '2025-01-05',
-    author: { name: 'Admin' },
-    coverImage: ''
-  },
-  {
-    _id: '4',
-    title: 'Top 10 AI Tools You Must Use in 2026',
-    slug: 'top-10-ai-tools-2026',
-    excerpt: 'Discover powerful AI tools for productivity and coding.',
-    content: 'AI tools like ChatGPT and Notion AI are transforming work...',
-    category: 'AI Tools',
-    tags: ['tools', 'AI'],
-    readTime: 6,
-    views: 1200,
-    createdAt: '2026-01-10',
-    author: { name: 'Admin' },
-    coverImage: ''
-  },
-  {
-    _id: '5',
-    title: 'Best AI Tools for Developers',
-    slug: 'best-ai-tools-for-developers',
-    excerpt: 'Boost your coding productivity using AI tools.',
-    content: 'Developers can use tools like Copilot and Codeium...',
-    category: 'Programming',
-    tags: ['developers', 'AI'],
-    readTime: 7,
-    views: 1800,
-    createdAt: '2026-01-18',
-    author: { name: 'Admin' },
+    views: 0,
+    published: true,
+    createdAt: new Date('2025-01-05').toISOString(),
+    updatedAt: new Date('2025-01-05').toISOString(),
+    author: {
+      _id: '6679a1f2e4b0c3d5a8f12001',
+      name: 'Admin',
+      avatar: ''
+    },
     coverImage: ''
   }
 ];
+
+// ─────────────────────────────────────────────
+// src/mocks/index.js
+// Single import point for all mock data
+// ─────────────────────────────────────────────
+export { mockTools }     from './tools';
+export { mockAnalytics } from './analytics';
+export { mockBlogs }     from './blogs';
