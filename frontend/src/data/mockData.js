@@ -250,6 +250,6 @@ export const mockBlogs = [
 // src/mocks/index.js
 // Single import point for all mock data
 // ─────────────────────────────────────────────
-export { mockTools }     from './tools';
-export { mockAnalytics } from './analytics';
-export { mockBlogs }     from './blogs';
+//export { mockTools }     from './tools';
+//export { mockAnalytics } from './analytics';
+//export { mockBlogs }     from './blogs';

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 // ✅ Both maps keyed to the same categories for consistency
 const CATEGORY_CONFIG = {

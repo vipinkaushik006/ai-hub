@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import ErrorBoundary from './components/common/ErrorBoundary';
+import React from 'react';
 
 // ✅ Fail with a clear message if #root is missing
 // instead of a cryptic "createRoot(null)" crash

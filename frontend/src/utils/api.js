@@ -2,8 +2,11 @@ import axios from 'axios';
 
 // ✅ Vite env prefix is VITE_ not REACT_APP_
 // ✅ No silent fallback — misconfigured env should be visible immediately
-const BASE_URL = import.meta.env.VITE_API_URL;
-if (!BASE_URL) throw new Error('VITE_API_URL must be set in .env');
+//const BASE_URL = import.meta.env.VITE_API_URL;
+//if (!BASE_URL) throw new Error('VITE_API_URL must be set in .env');
+// ✅ BAAD MEIN (CRA syntax)
+const BASE_URL = process.env.REACT_APP_API_URL;
+if (!BASE_URL) throw new Error('REACT_APP_API_URL must be set in .env');
 
 // ─────────────────────────────────────────────
 // In-memory access token

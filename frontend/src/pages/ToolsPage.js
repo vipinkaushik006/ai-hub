@@ -95,7 +95,7 @@ const fetchTools = useCallback(async () => {
     const data = res?.data?.tools;
 
     if (Array.isArray(data) && data.length > 0) {
-      setTools(data);
+      setAllTools(data);
       setTotalPages(res?.data?.pages || 1);
     } else {
       throw new Error("No data from API");
@@ -116,7 +116,7 @@ const fetchTools = useCallback(async () => {
     if (category) filtered = filtered.filter((t) => t.category === category);
     if (pricing) filtered = filtered.filter((t) => t.pricing === pricing);
 
-    setTools(filtered);
+    setAllTools(filtered);
     setTotalPages(1);
   } finally {
     setLoading(false);

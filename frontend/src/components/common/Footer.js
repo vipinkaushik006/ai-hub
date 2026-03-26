@@ -80,7 +80,7 @@ export default function Footer() {
             {SITE_CONFIG.socials.length > 0 && (
               <div className="flex gap-3">
                 {SITE_CONFIG.socials.map((s) => (
-                  
+                  <a
                     key={s.name}
                     href={s.url}
                     target="_blank"
