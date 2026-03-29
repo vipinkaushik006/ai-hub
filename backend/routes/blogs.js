@@ -27,6 +27,7 @@ const handleError = (res, err) => {
   return res.status(500).json({ error: message });
 };
 
+
 // ─────────────────────────────────────────────
 // GET /api/blogs
 // Public | Paginated | Search + filter

@@ -33,7 +33,7 @@ export default function HomePage() {
       try {
         const [toolsRes, blogsRes] = await Promise.all([
           api.get('/tools/trending'),
-          api.get('/blogs?limit=3'),
+          api.get('/api/blogs?limit=3')
         ]);
         setTrendingTools(toolsRes.data.data || []);
         setBlogs(blogsRes.data.blogs || []);
