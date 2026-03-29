@@ -4,6 +4,10 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
+app.use(cors({
+  origin: "https://ai-hub-frontend-cppzs660b-vipinkaushik006s-projects.vercel.app",
+  credentials: true
+}));
 
 // ✅ Fail fast — never silently fall back to wrong DB or weak secrets
 if (!process.env.MONGODB_URI) {
@@ -12,7 +16,7 @@ if (!process.env.MONGODB_URI) {
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT_SECRET must be set in environment variables");
 }
-
+const cors = require('cors');
 const app = express();
 
 // ✅ Trust exactly one proxy hop (Vercel / Render / Railway all use 1)
@@ -195,3 +199,9 @@ connectDB()
     console.error("❌ Failed to connect to MongoDB:", err.message);
     process.exit(1);
   });
+const cors = require('cors');
+
+app.use(cors({
+  origin: "https://ai-hub-frontend-cppzs660b-vipinkaushik006s-projects.vercel.app",
+  credentials: true
+}));
