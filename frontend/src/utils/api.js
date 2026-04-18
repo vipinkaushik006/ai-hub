@@ -1,99 +1,72 @@
 import axios from 'axios';
 
-// ✅ Vite env prefix is VITE_ not REACT_APP_
-// ✅ No silent fallback — misconfigured env should be visible immediately
-//const BASE_URL = import.meta.env.VITE_API_URL;
-//if (!BASE_URL) throw new Error('VITE_API_URL must be set in .env');
-// ✅ BAAD MEIN (CRA syntax)
-const BASE_URL = process.env.REACT_APP_API_URL;
-if (!BASE_URL) throw new Error('REACT_APP_API_URL must be set in .env');
+// ✅ VITE syntax (not REACT_APP_ for Vite)
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+if (!BASE_URL.includes('/api')) {
+  console.warn('⚠️ API URL missing /api prefix - routes may 404');
+}
 
-// ─────────────────────────────────────────────
-// In-memory access token
-// ✅ Never store access token in localStorage —
-// any XSS can steal it. Memory is wiped on tab
-// close, refresh token cookie handles re-auth.
-// ─────────────────────────────────────────────
+// In-memory access token (correct ✅)
 let accessToken = null;
 
 export const setAccessToken = (token) => { accessToken = token; };
 export const clearAccessToken = () => { accessToken = null; };
 export const getAccessToken = () => accessToken;
 
-// ─────────────────────────────────────────────
-// Axios instance
-// ─────────────────────────────────────────────
 const api = axios.create({
-  baseURL: BASE_URL,
-  withCredentials: true, // ✅ Send httpOnly refresh token cookie on every request
-  timeout: 10_000,       // ✅ Fail fast — don't hang forever on dead server
+  baseURL: BASE_URL,           // ✅ Now has /api
+  withCredentials: true,       // ✅ Cookies for refresh token
+  timeout: 10_000,
 });
 
-// ─────────────────────────────────────────────
-// Request interceptor
-// Attach in-memory access token if present
-// ─────────────────────────────────────────────
+// Request interceptor ✅ (unchanged - perfect)
 api.interceptors.request.use(
   (config) => {
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    console.log(`📤 ${config.method?.toUpperCase()} ${config.url}`); // ✅ Debug
     return config;
   },
   (err) => Promise.reject(err)
 );
 
-// ─────────────────────────────────────────────
-// Token refresh logic
-// One shared promise so concurrent 401s only
-// trigger a single /auth/refresh call
-// ─────────────────────────────────────────────
+// Refresh logic ✅ (unchanged - perfect)
 let refreshPromise = null;
-
 const tryRefreshToken = () => {
   if (!refreshPromise) {
     refreshPromise = api
-      .post('/auth/refresh') // cookie is sent automatically
+      .post('/auth/refresh')
       .then((res) => {
-        setAccessToken(res.data.accessToken);
-        return res.data.accessToken;
+        setAccessToken(res.data.accessToken || res.data.token); // ✅ Handle both formats
+        return res.data.accessToken || res.data.token;
       })
-      .finally(() => {
-        refreshPromise = null; // ✅ Reset so next expiry triggers a fresh attempt
-      });
+      .finally(() => { refreshPromise = null; });
   }
   return refreshPromise;
 };
 
-// ─────────────────────────────────────────────
-// Response interceptor
-// On 401: attempt token refresh, retry original
-// request once. On second 401: log out cleanly.
-// ─────────────────────────────────────────────
+// Response interceptor ✅ (unchanged - perfect)
 api.interceptors.response.use(
   (res) => res,
   async (err) => {
     const original = err.config;
-
     const is401 = err.response?.status === 401;
     const isRefreshEndpoint = original.url?.includes('/auth/refresh');
     const alreadyRetried = original._retry;
 
-    // ✅ If refresh itself fails with 401 — session is dead, log out
     if (is401 && isRefreshEndpoint) {
       clearAccessToken();
       window.dispatchEvent(new CustomEvent('auth:logout'));
       return Promise.reject(err);
     }
 
-    // ✅ First 401 on a normal request — try to refresh and retry
     if (is401 && !alreadyRetried) {
       original._retry = true;
-
       try {
         const newToken = await tryRefreshToken();
         original.headers.Authorization = `Bearer ${newToken}`;
-        return api(original); // ✅ Retry original request with new token
+        return api(original);
       } catch {
         clearAccessToken();
         window.dispatchEvent(new CustomEvent('auth:logout'));

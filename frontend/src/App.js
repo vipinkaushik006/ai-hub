@@ -1,31 +1,38 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import { Toaster } from 'react-hot-toast';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import React, { Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import AdminCreateBlog from "./pages/AdminCreateBlog";
 
-import Navbar from './components/common/Navbar';
-import Footer from './components/common/Footer';
-import ScrollToTop from './components/common/ScrollToTop';
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 // ✅ Lazy load all pages — each becomes its own chunk
 // Only the current page's JS is downloaded on first visit
-const HomePage         = lazy(() => import('./pages/HomePage'));
-const ToolsPage        = lazy(() => import('./pages/ToolsPage'));
-const ToolDetailPage   = lazy(() => import('./pages/ToolDetailPage'));
-const BlogPage         = lazy(() => import('./pages/BlogPage'));
-const BlogDetailPage   = lazy(() => import('./pages/BlogDetailPage'));
-const AnalyticsPage    = lazy(() => import('./pages/AnalyticsPage'));
-const DevToolsPage     = lazy(() => import('./pages/DevToolsPage'));
-const LoginPage        = lazy(() => import('./pages/LoginPage'));
-const RegisterPage     = lazy(() => import('./pages/RegisterPage'));
-const BookmarksPage    = lazy(() => import('./pages/BookmarksPage'));
-const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
-const AdminPage        = lazy(() => import('./pages/AdminPage'));
-const PrivacyPolicy    = lazy(() => import('./pages/PrivacyPolicy'));
-const Terms            = lazy(() => import('./pages/Terms'));
-const Sitemap          = lazy(() => import('./pages/Sitemap'));
-const NotFoundPage     = lazy(() => import('./pages/NotFoundPage'));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ToolsPage = lazy(() => import("./pages/ToolsPage"));
+const ToolDetailPage = lazy(() => import("./pages/ToolDetailPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogDetailPage = lazy(() => import("./pages/BlogDetailPage"));
+const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
+const DevToolsPage = lazy(() => import("./pages/DevToolsPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const BookmarksPage = lazy(() => import("./pages/BookmarksPage"));
+const ForgotPasswordPage = lazy(() => import("./pages/ForgotPasswordPage"));
+const AdminPage = lazy(() => import("./pages/AdminPage"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // ─────────────────────────────────────────────
 // Route guards
@@ -43,7 +50,7 @@ const AdminRoute = () => {
   const { user, loading } = useAuth();
   if (loading) return <PageLoader />;
   if (!user) return <Navigate to="/login" replace />;
-  return user.role === 'admin' ? <Outlet /> : <Navigate to="/" replace />;
+  return user.role === "admin" ? <Outlet /> : <Navigate to="/" replace />;
 };
 
 // ✅ Redirects logged-in users away from login/register
@@ -79,22 +86,25 @@ function App() {
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   {/* Public routes */}
-                  <Route path="/"               element={<HomePage />} />
-                  <Route path="/tools"          element={<ToolsPage />} />
-                  <Route path="/tools/:slug"    element={<ToolDetailPage />} />
-                  <Route path="/blog"           element={<BlogPage />} />
-                  <Route path="/blog/:slug"     element={<BlogDetailPage />} />
-                  <Route path="/analytics"      element={<AnalyticsPage />} />
-                  <Route path="/dev-tools"      element={<DevToolsPage />} />
-                  <Route path="/privacy"        element={<PrivacyPolicy />} />
-                  <Route path="/terms"          element={<Terms />} />
-                  <Route path="/sitemap"        element={<Sitemap />} />
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/tools" element={<ToolsPage />} />
+                  <Route path="/tools/:slug" element={<ToolDetailPage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/:slug" element={<BlogDetailPage />} />
+                  <Route path="/analytics" element={<AnalyticsPage />} />
+                  <Route path="/dev-tools" element={<DevToolsPage />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/sitemap" element={<Sitemap />} />
 
                   {/* ✅ Guest-only routes — redirect to / if already logged in */}
                   <Route element={<GuestRoute />}>
-                    <Route path="/login"           element={<LoginPage />} />
-                    <Route path="/register"        element={<RegisterPage />} />
-                    <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route
+                      path="/forgot-password"
+                      element={<ForgotPasswordPage />}
+                    />
                   </Route>
 
                   {/* ✅ Protected routes — redirect to /login if not authenticated */}
@@ -105,6 +115,10 @@ function App() {
                   {/* ✅ Admin-only routes — redirect to / if not admin */}
                   <Route element={<AdminRoute />}>
                     <Route path="/admin" element={<AdminPage />} />
+                    <Route
+                      path="/admin/create-blog"
+                      element={<AdminCreateBlog />}
+                    />
                   </Route>
 
                   {/* Fallback */}
@@ -121,11 +135,11 @@ function App() {
             position="top-right"
             toastOptions={{
               style: {
-                background: '#1e293b',
-                color: '#e2e8f0',
-                border: '1px solid rgba(255,255,255,0.1)'
+                background: "#1e293b",
+                color: "#e2e8f0",
+                border: "1px solid rgba(255,255,255,0.1)",
               },
-              duration: 4000 // ✅ Auto-dismiss after 4s
+              duration: 4000, // ✅ Auto-dismiss after 4s
             }}
           />
         </Router>

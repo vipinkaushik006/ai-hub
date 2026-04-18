@@ -4,7 +4,7 @@ import SEO from "../components/common/SEO";
 import BlogCard from "../components/blog/BlogCard";
 import AdBanner from "../components/common/AdBanner";
 import api from "../utils/api";
-import { mockBlogs } from "../data/mockData";
+//import { mockBlogs } from "../data/mockData";
 
 const CATEGORIES = [
   "All",
@@ -17,23 +17,23 @@ const CATEGORIES = [
 ];
 
 export default function BlogPage() {
-  const [blogs, setBlogs] = useState(mockBlogs);
+  const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "";
 
   useEffect(() => {
-    api.get('/blogs')
-      .then(res => {
+    api
+      .get("/blogs")
+      .then((res) => {
         const data = res?.data?.blogs;
-        if (Array.isArray(data) && data.length > 0) {
-          setBlogs(data);
-        } else {
-          setBlogs(mockBlogs);
-        }
+        setBlogs(Array.isArray(data) ? data : []);
       })
       .catch(() => {
-        setBlogs(mockBlogs);
+        setBlogs([]);
+      })
+      .catch(() => {
+        setBlogs(null);
       })
       .finally(() => {
         setLoading(false); // ✅ Fix #1
@@ -41,7 +41,7 @@ export default function BlogPage() {
   }, []);
 
   const filteredBlogs = category
-    ? blogs.filter(b => b.category === category)
+    ? blogs.filter((b) => b.category === category)
     : blogs; // ✅ Fix #2
 
   return (
