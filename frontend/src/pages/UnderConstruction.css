@@ -1,0 +1,467 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+  background: #020617;
+}
+
+/* ===========================
+   Full Page
+=========================== */
+
+.construction-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at top, #0f2b46 0%, #020617 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===========================
+   Animated Stars
+=========================== */
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+      radial-gradient(white 1px, transparent 1px),
+      radial-gradient(#00d9ff 1px, transparent 1px);
+  background-size: 120px 120px, 180px 180px;
+  background-position: 0 0, 60px 60px;
+  animation: starsMove 60s linear infinite;
+  opacity: .35;
+}
+
+@keyframes starsMove {
+
+  from{
+      transform: translateY(0);
+  }
+
+  to{
+      transform: translateY(-120px);
+  }
+
+}
+
+/* ===========================
+   Floating Particles
+=========================== */
+
+.particles span{
+    position:absolute;
+    display:block;
+    width:8px;
+    height:8px;
+    background:#00d9ff;
+    border-radius:50%;
+    box-shadow:0 0 15px #00d9ff;
+    animation: float 12s linear infinite;
+}
+
+.particles span:nth-child(1){
+    left:10%;
+    animation-delay:0s;
+    animation-duration:10s;
+}
+
+.particles span:nth-child(2){
+    left:25%;
+    animation-delay:2s;
+}
+
+.particles span:nth-child(3){
+    left:40%;
+    animation-delay:5s;
+}
+
+.particles span:nth-child(4){
+    left:60%;
+    animation-delay:1s;
+}
+
+.particles span:nth-child(5){
+    left:75%;
+    animation-delay:4s;
+}
+
+.particles span:nth-child(6){
+    left:90%;
+    animation-delay:7s;
+}
+
+.particles span:nth-child(7){
+    left:55%;
+    animation-delay:9s;
+}
+
+.particles span:nth-child(8){
+    left:18%;
+    animation-delay:6s;
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+
+}
+
+/* ===========================
+   Glass Card
+=========================== */
+
+.construction-card{
+
+    width:650px;
+    max-width:90%;
+    padding:50px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:
+    0 0 60px rgba(0,217,255,.12);
+
+    animation:card 1.2s ease;
+
+}
+
+@keyframes card{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+/* ===========================
+ Robot
+=========================== */
+
+.robot{
+
+    font-size:75px;
+
+    animation:robot 3s ease-in-out infinite;
+
+}
+
+@keyframes robot{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+}
+
+/* ===========================
+ Logo
+=========================== */
+
+.logo{
+
+    margin-top:10px;
+
+    font-size:60px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.logo span{
+
+    color:#00d9ff;
+
+    text-shadow:
+    0 0 20px #00d9ff,
+    0 0 40px #00d9ff;
+
+}
+
+/* ===========================
+ Text
+=========================== */
+
+.tagline{
+
+    margin-top:8px;
+
+    color:#9fb8c7;
+
+    letter-spacing:2px;
+
+    font-size:14px;
+
+}
+
+.title{
+
+    margin-top:30px;
+
+    font-size:38px;
+
+}
+
+.description{
+
+    margin-top:20px;
+
+    color:#d0d0d0;
+
+    line-height:30px;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+ Notify Box
+=========================== */
+
+.notify-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.notify-box input{
+
+    width:320px;
+
+    padding:16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+.notify-box input::placeholder{
+
+    color:#cfcfcf;
+
+}
+
+.notify-box button{
+
+    padding:16px 30px;
+
+    border:none;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    background:#00d9ff;
+
+    color:#02111f;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.notify-box button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 25px #00d9ff;
+
+}
+
+/* ===========================
+ Launch
+=========================== */
+
+.launching{
+
+    margin-top:35px;
+
+    color:#00d9ff;
+
+    font-size:18px;
+
+    animation:blink 1.5s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+
+        opacity:.5;
+
+    }
+
+}
+
+/* ===========================
+ Social
+=========================== */
+
+.socials{
+
+    margin-top:35px;
+
+}
+
+.socials a{
+
+    text-decoration:none;
+
+    color:white;
+
+    margin:0 15px;
+
+    transition:.3s;
+
+    font-size:17px;
+
+}
+
+.socials a:hover{
+
+    color:#00d9ff;
+
+}
+
+/* ===========================
+ Footer
+=========================== */
+
+.copyright{
+
+    margin-top:35px;
+
+    color:#8fa7b7;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+ Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.logo{
+
+    font-size:42px;
+
+}
+
+.title{
+
+    font-size:28px;
+
+}
+
+.description{
+
+    font-size:16px;
+
+    line-height:28px;
+
+}
+
+.notify-box{
+
+    flex-direction:column;
+
+}
+
+.notify-box input{
+
+    width:100%;
+
+}
+
+.notify-box button{
+
+    width:100%;
+
+}
+
+.construction-card{
+
+    padding:30px;
+
+}
+
+.robot{
+
+    font-size:60px;
+
+}
+
+}
